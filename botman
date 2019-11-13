@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ID=$(podman images | awk '$1 ~ /liberty\/botman/{print $3}')
+PWD=$(pwd)
+
+podman run --rm -it --name dl_botman -v $PWD/bots:/var/www/botman $ID /root/.composer/vendor/botman/installer/botman $1
